@@ -8,6 +8,7 @@ OverlayEntry _createFloatingMenu({
   required double width,
   VoidCallback? onDismiss,
 }) {
+  const padding = 16.0;
   return OverlayEntry(
     builder: (context) {
       return Stack(
@@ -15,13 +16,13 @@ OverlayEntry _createFloatingMenu({
           GestureDetector(
             onTap: onDismiss,
             child: Container(
-              color: Colors.black12,
+              color: Colors.black.withOpacity(0.3),
             ),
           ),
           Positioned(
-            left: startX,
+            left: startX + padding,
             top: startY + height,
-            width: width,
+            width: width - padding * 2,
             child: Material(
               color: Colors.transparent,
               child: Menu(title: title),
