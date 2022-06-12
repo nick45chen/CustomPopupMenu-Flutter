@@ -72,11 +72,12 @@ class _MenuListCellState extends State<MenuListCell> {
   void _showMenu(BuildContext context) {
     _findMenuPosition();
     floatingMenu = _createFloatingMenu(
-      xPosition,
-      yPosition,
-      height,
-      width,
-      _dismissMenu,
+      title: widget.title,
+      startX: xPosition,
+      startY: yPosition,
+      height: height,
+      width: width,
+      onDismiss: _dismissMenu,
     );
     Overlay.of(context)?.insert(floatingMenu!);
   }

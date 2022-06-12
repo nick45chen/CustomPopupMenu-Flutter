@@ -1,6 +1,13 @@
 part of 'menu_list_cell.dart';
 
-OverlayEntry _createFloatingMenu(double startX, double startY, double height, double width, VoidCallback onDismiss) {
+OverlayEntry _createFloatingMenu({
+  required String title,
+  required double startX,
+  required double startY,
+  required double height,
+  required double width,
+  VoidCallback? onDismiss,
+}) {
   return OverlayEntry(
     builder: (context) {
       return Stack(
@@ -15,9 +22,9 @@ OverlayEntry _createFloatingMenu(double startX, double startY, double height, do
             left: startX,
             top: startY + height,
             width: width,
-            child: const Material(
+            child: Material(
               color: Colors.transparent,
-              child: Menu(),
+              child: Menu(title: title),
             ),
           ),
         ],
@@ -27,13 +34,15 @@ OverlayEntry _createFloatingMenu(double startX, double startY, double height, do
 }
 
 class Menu extends StatelessWidget {
-  const Menu({Key? key}) : super(key: key);
+  final String title;
+
+  const Menu({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 5),
+        const SizedBox(height: 2),
         const Align(
           alignment: Alignment(-0.85, 0.0),
           child: Arrow(color: Colors.amber),
@@ -45,7 +54,9 @@ class Menu extends StatelessWidget {
             color: Colors.amber,
             child: Column(
               children: [
-                const Expanded(child: Center(child: Icon(Icons.info_outline))),
+                Expanded(
+                  child: Center(child: Text(title, style: const TextStyle(fontSize: 24, color: Colors.white))),
+                ),
                 Row(
                   children: [
                     Expanded(

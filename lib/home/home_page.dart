@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'menu/arrow.dart';
 import 'menu/menu_list_cell.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,10 +16,16 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('demo'),
       ),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
-        child: Center(
-          child: MenuListCell(title: 'LongPress me'),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: ListView.separated(
+          physics: const BouncingScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: 50,
+          itemBuilder: (context, index) {
+            return MenuListCell(title: 'LongPress me $index');
+          },
+          separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 8),
         ),
       ),
     );
