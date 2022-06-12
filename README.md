@@ -5,16 +5,16 @@
 ``` dart
 GlobalKey actionKey = LabeledGlobalKey(title);
 
-// add golbal key to your cell
+//add a global key to the view where you want to display the menu
 void _cell() {
   return GestureDetector(
     key: actionKey,
-    child: Container(),
+    child: CustomView,
   );
 }
 
-// use golbal to get position
-void _findMenuPosition() {
+// use golbal key to get the position
+void _findPosition() {
   RenderBox? renderBox =
       actionKey.currentContext?.findRenderObject() as RenderBox?;
   if (renderBox != null) {
@@ -26,36 +26,23 @@ void _findMenuPosition() {
   }
 }
 
-// create menu
-OverlayEntry _createFloatingMenu() {
-  return OverlayEntry(
+// add the view to the screen
+void addMenuToScreen() {
+  Widdet floatingMenuView = _OverlayEntry(
     builder: (context) {
       return Positioned(
           left: xPosition,
           top: yPosition + height,
           width: width,
-          child: Menu());
-    },
-  );
-}
-
-// add menu
-void showMenu() {
-  Widdet menu = _OverlayEntry(
-    builder: (context) {
-      return Positioned(
-          left: xPosition,
-          top: yPosition + height,
-          width: width,
-          child: Menu());
+          child: CustomMenu());
     },
   );
 
   // add to screen
-  Overlay.of(context)?.insert(menu);
+  Overlay.of(context)?.insert(floatingMenuView);
 
-  // removed
-  //menu?.remove();
+  // remove from screen
+  //floatingMenuView?.remove();
 }
 ```
 
