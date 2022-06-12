@@ -1,16 +1,65 @@
-# custom_pop_up_menu
+# CustomPopupMenu-Flutter
 
-Custom pop-up menu
+### How to do that
 
-## Getting Started
+``` dart
+GlobalKey actionKey = LabeledGlobalKey(title);
 
-This project is a starting point for a Flutter application.
+// add golbal key to your cell
+void _cell() {
+  return GestureDetector(
+    key: actionKey,
+    child: Container(),
+  );
+}
 
-A few resources to get you started if this is your first Flutter project:
+// use golbal to get position
+void _findMenuPosition() {
+  RenderBox? renderBox =
+      actionKey.currentContext?.findRenderObject() as RenderBox?;
+  if (renderBox != null) {
+    height = renderBox.size.height;
+    width = renderBox.size.width;
+    Offset offset = renderBox.localToGlobal(Offset.zero);
+    xPosition = offset.dx;
+    yPosition = offset.dy;
+  }
+}
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+// create menu
+OverlayEntry _createFloatingMenu() {
+  return OverlayEntry(
+    builder: (context) {
+      return Positioned(
+          left: xPosition,
+          top: yPosition + height,
+          width: width,
+          child: Menu());
+    },
+  );
+}
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+// add menu
+void showMenu() {
+  Widdet menu = _OverlayEntry(
+    builder: (context) {
+      return Positioned(
+          left: xPosition,
+          top: yPosition + height,
+          width: width,
+          child: Menu());
+    },
+  );
+
+  // add to screen
+  Overlay.of(context)?.insert(menu);
+
+  // removed
+  //menu?.remove();
+}
+```
+
+### Screenshot
+
+<img src="screenshot.png" alt="Girl in a jacket" width="311" height="640">
+

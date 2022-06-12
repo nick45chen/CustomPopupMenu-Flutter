@@ -1,27 +1,29 @@
 part of 'menu_list_cell.dart';
 
 OverlayEntry _createFloatingMenu(double startX, double startY, double height, double width, VoidCallback onDismiss) {
-  return OverlayEntry(builder: (context) {
-    return Stack(
-      children: [
-        GestureDetector(
-          onTap: onDismiss,
-          child: Container(
-            color: Colors.black12,
+  return OverlayEntry(
+    builder: (context) {
+      return Stack(
+        children: [
+          GestureDetector(
+            onTap: onDismiss,
+            child: Container(
+              color: Colors.black12,
+            ),
           ),
-        ),
-        Positioned(
-          left: startX,
-          top: startY + height,
-          width: width,
-          child: const Material(
-            color: Colors.transparent,
-            child: Menu(),
+          Positioned(
+            left: startX,
+            top: startY + height,
+            width: width,
+            child: const Material(
+              color: Colors.transparent,
+              child: Menu(),
+            ),
           ),
-        ),
-      ],
-    );
-  });
+        ],
+      );
+    },
+  );
 }
 
 class Menu extends StatelessWidget {

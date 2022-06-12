@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
       body: const Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.0),
         child: Center(
-          child: MenuListCell(title: 'Click me'),
+          child: MenuListCell(title: 'LongPress me'),
         ),
       ),
     );
