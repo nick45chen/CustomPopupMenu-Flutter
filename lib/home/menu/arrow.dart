@@ -1,31 +1,36 @@
 import 'package:flutter/material.dart';
 
+/// 箭頭 widget
+/// @param color: 箭頭顏色
+/// @param isUpArrow: 箭頭是否往上
 class Arrow extends StatelessWidget {
   final Color color;
-  final height = 21.0;
-  final width = 30.0;
+  final bool isUpArrow;
+  static const height = 21.0;
+  static const width = 30.0;
 
-  const Arrow({Key? key, required this.color}) : super(key: key);
+  const Arrow({Key? key, required this.color, required this.isUpArrow}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ClipPath(
-      clipper: ArrowClipper(isUpSide: true),
+      clipper: ArrowClipper(isUp: isUpArrow),
       child: Container(height: height, width: width, decoration: BoxDecoration(color: color)),
     );
   }
 }
 
+/// 繪製向上箭頭
 class ArrowClipper extends CustomClipper<Path> {
   // 箭頭是否向上
-  bool isUpSide;
+  bool isUp;
 
-  ArrowClipper({required this.isUpSide});
+  ArrowClipper({required this.isUp});
 
   @override
   Path getClip(Size size) {
     Path path = Path();
-    if (isUpSide) {
+    if (isUp) {
       path.moveTo(0, size.height); // 左下
       path.lineTo(size.width / 2, 0); // 中上
       path.lineTo(size.width, size.height); // 右下
