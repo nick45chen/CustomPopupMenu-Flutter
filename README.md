@@ -48,5 +48,5 @@ void addMenuToScreen() {
 
 ### Screenshot
 
-<img src="screenshot.png" alt="Girl in a jacket" width="311" height="640">
+<img src="screenshot01.png" alt="bottom" width="311" height="640"><img src="screenshot02.png" alt="top" width="311" height="640">
 
